@@ -9,7 +9,7 @@ import re
 import getpass
 import configparser
 import os
-import pywintypes 
+import pywintypes # Import necessário para capturar erros específicos de COM
 
 # --- Classes e Funções de Interface ---
 class Cores:
@@ -197,7 +197,7 @@ def open_and_login_sap(config):
         return None
 
 # ==============================================================================
-# FUNÇÃO PRINCIPAL MODIFICADA - Substitua a sua função novamente por esta
+# FUNÇÃO PRINCIPAL MODIFICADA - AQUI ESTÁ A CORREÇÃO
 # ==============================================================================
 def processar_lote_de_rc(session, lote_de_itens):
     """
@@ -242,8 +242,16 @@ def processar_lote_de_rc(session, lote_de_itens):
         print_info("Validando itens da grade (pressionando Enter)...")
         session.findById("wnd[0]").sendVKey(0)
         aguardar_sap(session)
+
+        # --- NOVA VERIFICAÇÃO: Lidar com o aviso "Data de entrega pode ser cumprida?" ---
+        status_bar_check = session.findById("wnd[0]/sbar")
+        # Verifica se a mensagem na barra de status é um aviso (Warning) ou contém o texto específico.
+        if status_bar_check.messageType == 'W' or "Data de entrega" in status_bar_check.text:
+            print_aviso(f"Aviso detectado na barra de status: '{status_bar_check.text}'. Pressionando Enter para confirmar.")
+            session.findById("wnd[0]").sendVKey(0) # Pressiona Enter para confirmar o aviso
+            aguardar_sap(session)
         
-        # --- MELHORIA: Tratamento do pop-up de aviso (wnd[1]) ---
+        # --- Tratamento do pop-up de aviso (wnd[1]) ---
         try:
             # Tenta encontrar a janela de pop-up (wnd[1])
             popup_window = session.findById("wnd[1]")
@@ -267,7 +275,6 @@ def processar_lote_de_rc(session, lote_de_itens):
 
         # --- PASSO 2: INSERINDO DEPÓSITOS ---
         print_header("Passo 2: Inserindo Depósitos")
-        # (Seu código para preencher os depósitos continua o mesmo)
         grid.setCurrentCell(int(lote_de_itens.iloc[0]['Validador']), "MATNR")
         aguardar_sap(session)
         for i, (_, item) in enumerate(lote_de_itens.iterrows()):
@@ -286,8 +293,7 @@ def processar_lote_de_rc(session, lote_de_itens):
         session.findById("wnd[0]/tbar[0]/btn[11]").press() # Botão Salvar
         aguardar_sap(session)
         
-        # --- MELHORIA: Adicionado tratamento de pop-up também APÓS salvar ---
-        # Às vezes, o SAP pede uma confirmação final em um pop-up.
+        # --- Adicionado tratamento de pop-up também APÓS salvar ---
         try:
             popup_window = session.findById("wnd[1]")
             popup_text = getattr(popup_window, 'text', 'Pop-up sem texto')
@@ -329,6 +335,7 @@ def processar_lote_de_rc(session, lote_de_itens):
         error_msg = f"Erro crítico na automação SAP: {str(e)}"
         print_erro(error_msg)
         try:
+            # Tenta voltar para a tela inicial para não travar a transação
             session.findById("wnd[0]/tbar[0]/okcd").text = "/N"
             session.findById("wnd[0]").sendVKey(0)
         except:
