@@ -103,8 +103,8 @@ class SAPAutomationGUI:
 
         # Ícones em Base64 para evitar arquivos externos (versões brancas para tema escuro)
         self.icons = {
-            "start": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMTE82AAAByklEQVQ4EaVTTUhUURQ+V3d1JzUzDBf9B0sLw0lDItocoQd9QUG3LhpEL7pw7aJdKyIi6FYQ2oZ1UXQRhFAb60PQg1ZCi2kStZpoGjcz9768eW/G6Mwbw72X+37n3HPvPQCB8Q+QnL8xQCeAF/D/o/kOWG01P4BHgCfz30KMR8s+AaYAPND9GkAy8BpwGSgLHsA74JESi2kUeC2APdC6BN8B+u0mYwTo/2QjE58D2pXfAYwA215W25gBFoD1/R9IZzGgYv03gC2gC1gDvgIHADgACsAecD6hL8eA/wPsg20jM4C3gCuABGAy8AaI8/g5eA5MABaAm2l6RwHw5wA3gNfAR+Bv5aA3AM8Bl4APwFPAx4CPgA3gPXAD+Aw8BvwF+Y+S+SJx/A/yYm4WnAfuA38B/gF8B9zK/C+Xy0uA+eBvsD/gAHAQeAxcBnaB1wCfwN74qINa+A/4A/AT8BfwL6n2WnAY+A+cBj4DHvEY+BTYBT4B/gY+An4G9gOvgZfAReA/4FvgK/AqcB14DwwB+H/t9w9OAD+An/d8D/4L/EXkX2gN8A1XkLwNngGfA58Ar4DNwFvgE/A28Bv4Cfi/sXv0C/A78DPgIeBR4DvgE+A54AvAE+A9YAhYABYAzYC/gH2APWApWAcvAdqAfeAesAyuBvA74Anjkl+sN4EPgG+A3wBvgS5Y4ADwGjgIfAm8BD4GngCPANeA0cAW4BnwG3AcuArdBB/gMvAasA/8CPga+Ad8AvwB+A/YD/gD+AfwB+D/AP8C/gb8F/gX+A/wH/A78CvwNfA1sApsBGgHNgNngCXgGfAYeBIMAP+A18B6sAmsA58AW8AC8A2YAxaBLWAb2A3uAx8AZ4BnwEvAm8BTYB/4BOwBDoCTQBDwBrgD3AE+Ax4AZoCNb+V2d+AocB14B/gJ+BG4C1wBfgE+A74DPgX+D/gb+B/wL/A/4DvgF+BGYAhZ/f+AasAm8BWwA8+B14BTwGnAEOAX8B7wG3gV8H4L/f7bB/yXgG/A18CXwDvgQ2AH+AF8CJ4DngHPAK8Ar4PXgGfA78DPwN/Ad8A3wL+Bn5B/gP8F/rX7F/gV+B/wI/AJ8K/AnwA/8AMxS88wI6H8lAAAAAElFTkSuQmCC"),
-            "stop": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA7SURBVDhPY/wPBAxUACZA1gBTgA2K/1EGBgaG/2A8HIBoMRhIMeAgYADEDwFGBgYGDjA50uAzAAgwAK0/AwMT5urRAAAAAElFTkSuQmCC"),
+            "start": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMTE82AAAByklEQVQ4EaVTTUhUURQ+V3d1JzUzDBf9B0sLw0lDItocoQd9QUG3LhpEL7pw7aJdKyIi6FYQ2oZ1UXQRhFAb60PQg1ZCi2kStZpoGjcz9768eW/G6Mwbw72X+37n3HPvPQCB8Q+QnL8xQCeAF/D/o/kOWG01P4BHgCfz30KMR8s+AaYAPND9GkAy8BpwGSgLHsA74JESi2kUeC2APdC6BN8B+u0mYwTo/2QjE58D2pXfAYwA215W25gBFoD1/R9IZzGgYv03gC2gC1gDvgIHADgACsAecD6hL8eA/wPsg20jM4C3gCuABGAy8AaI8/g5eA5MABaAm2l6RwHw5wA3gNfAR+Bv5aA3AM8Bl4APwFPAx4CPgA3gPXAD+Aw8BvwF+Y+S+SJx/A/yYm4WnAfuA38B/gF8B9zK/C+Xy0uA+eBvsD/gAHAQeAxcBnaB1wCfwN74qINa+A/4A/AT8BfwL6n2WnAY+A+cBj4DHvEY+BTYBT4B/gY+An4G9gOvgZfAReA/4FvgK/AqcB14DwwB+H/t9w9OAD+An/d8D/4L/EXkX2gN8A1XkLwNngGfA58Ar4DNwFvgE/A28Bv4Cfi/sXv0C/A78DPgIeBR4DvgE+A54AvAE+A9YAhYABYAzYC/gH2APWApWAcvAdqAfeAesAyuBvA74Anjkl+sN4EPgG+A3wBvgS5Y4ADwGjgIfAm8BD4GngCPANeA0cAW4BnwG3AcuArdBB/gMvAasA/8CPga+Ad8AvwB+A/YD/gD+AfwB+D/AP8C/gb8F/gX+A/wH/A78CvwNfA1sApsBGgHNgNngCXgGfAYeBIMAP+A18B6sAmsA58AW8AC8A2YAxaBLWAb2A3uAx8AZ4BnwEvAm8BTYB/4BOwBDoCTQBDwBrgD3AE+Ax4AZoCNb+V2d+AocB14B/gJ+BG4C1wBfgE+A74DPgX+D/gb+B/wL/A/4DvgF+BGYAhZ/f+AasAm8BWwA8+B14BTwGnAEOAX8B7wG3gV8H4L/f7bB/yXgG/A18CXwDvgQ2AH+AF8CJ4DngHPAK8Ar4PXgGfA78DPwN/Ad8A3wL+Bn5B/gP8F/rX7F/gV+B/wI/AJ8K/AnwA/8AMxS88wI6H8lAAAAAElFTSuQmCC"),
+            "stop": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA7SURBVDhPY/wPBAxUACZA1gBTgA2K/1EGBgaG/2A8HIBoMRhIMeAgYADEDwFGBgYGDjA50uAzAAgwAK0/AwMT5urRAAAAAElFTSuQmCC"),
         }
         
         # Variáveis de controle
@@ -157,7 +157,7 @@ class SAPAutomationGUI:
             return ImageTk.PhotoImage(img)
         except Exception:
             return None
-        
+            
     def atualizar_status_sap(self, conectado=False, mensagem=None):
         """Atualiza o indicador de status do SAP na barra de status."""
         if conectado:
@@ -275,8 +275,8 @@ class SAPAutomationGUI:
         log_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
         
         self.log_area = scrolledtext.ScrolledText(log_frame, wrap=tk.WORD, state=tk.DISABLED, font=("Consolas", 10), 
-                                                 bg="#252526", fg="#D4D4D4", relief=tk.FLAT, borderwidth=0,
-                                                 insertbackground="white") # Cor do cursor
+                                                bg="#252526", fg="#D4D4D4", relief=tk.FLAT, borderwidth=0,
+                                                insertbackground="white") # Cor do cursor
         self.log_area.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
         
         self.progress_var = tk.DoubleVar()
@@ -497,7 +497,7 @@ class SAPAutomationGUI:
         """Exibe informações sobre o aplicativo."""
         about_text = """Automação SAP - Requisição de Compra
 
-Versão 1.3
+Versão 1.4 - Otimizada
 
 Este aplicativo automatiza o processo de criação de requisições de compra no SAP.
 
@@ -598,21 +598,37 @@ Contato: gabriel.dantas@latam.com
             # --- FASE 1: VALIDAÇÃO ---
             resultados = self.validar_lote_na_rc(lote_df)
             
-            # --- ATUALIZAÇÃO PÓS-VALIDAÇÃO ---
-            self.print_header("Atualizando Planilha com Resultados da Validação")
+            # --- ATUALIZAÇÃO PÓS-VALIDAÇÃO (EM LOTE) ---
+            self.print_header("Preparando Atualização da Planilha com Resultados da Validação")
             linhas_ok = []
+            validation_updates = []
             for res in resultados:
                 if not self.running: break
+                
+                # Adiciona a atualização do status na lista de requisições
+                validation_updates.append({
+                    'range': f'{gspread.utils.rowcol_to_a1(res["linha_planilha"], status_col_index)}',
+                    'values': [[str(res['status'])]],
+                })
+                # Adiciona a atualização do número da RC (ou 'ERRO')
+                validation_updates.append({
+                    'range': f'{gspread.utils.rowcol_to_a1(res["linha_planilha"], req_col_index)}',
+                    'values': [[str(res['numero_rc'])]],
+                })
+                
+                if res['status'] == 'OK':
+                    linhas_ok.append(res['linha_planilha'])
+
+            if validation_updates and self.running:
                 try:
-                    self.print_info(f"Atualizando linha {res['linha_planilha']}: Status='{res['status']}'")
-                    worksheet.update_cell(res['linha_planilha'], status_col_index, res['status'])
-                    worksheet.update_cell(res['linha_planilha'], req_col_index, str(res['numero_rc']))
-                    if res['status'] == 'OK':
-                        linhas_ok.append(res['linha_planilha'])
-                    time.sleep(1.2) # Evitar sobrecarga da API do Google
+                    self.print_info(f"Enviando {len(validation_updates)} atualizações de validação para a planilha...")
+                    worksheet.batch_update(validation_updates)
+                    self.print_sucesso("Resultados da validação atualizados na planilha.")
                 except gspread.exceptions.APIError as api_err:
-                    self.print_erro(f"Erro de API Google na linha {res['linha_planilha']}: {api_err}. Aguardando...")
-                    time.sleep(10)
+                    self.print_erro(f"Erro de API do Google ao atualizar resultados da validação: {api_err}")
+                    self.print_aviso("O processo continuará, mas a planilha pode não refletir os resultados da validação.")
+                except Exception as e:
+                    self.print_erro(f"Ocorreu um erro inesperado ao atualizar resultados da validação: {e}")
 
             # --- FASE 2: CRIAÇÃO ---
             if not linhas_ok or not self.running:
@@ -630,15 +646,35 @@ Contato: gabriel.dantas@latam.com
             numero_rc, msg_status = self.criar_rc_para_lote_ok(lote_df_ok)
             
             self.print_header("Atualizando Planilha com a RC Criada")
+
+            # --- MELHORIA: Atualização da planilha em lote para maior eficiência ---
+            if not self.running: return
+
+            creation_updates = []
             for linha in lote_df_ok['linha_planilha']:
-                if not self.running: break
+                # Adiciona a atualização do status
+                creation_updates.append({
+                    'range': f'{gspread.utils.rowcol_to_a1(linha, status_col_index)}',
+                    'values': [[str(msg_status)]],
+                })
+                # Adiciona a atualização do número da RC, se houver
+                if numero_rc:
+                    creation_updates.append({
+                        'range': f'{gspread.utils.rowcol_to_a1(linha, req_col_index)}',
+                        'values': [[str(numero_rc)]],
+                    })
+            
+            if creation_updates:
                 try:
-                    worksheet.update_cell(linha, status_col_index, msg_status)
-                    if numero_rc: worksheet.update_cell(linha, req_col_index, numero_rc)
-                    time.sleep(1.2)
+                    self.print_info(f"Enviando {len(creation_updates)} atualizações de criação para a planilha de uma só vez...")
+                    worksheet.batch_update(creation_updates)
+                    self.print_sucesso("Planilha atualizada com sucesso!")
                 except gspread.exceptions.APIError as api_err:
-                    self.print_erro(f"Erro de API Google na linha {linha}: {api_err}. Aguardando...")
-                    time.sleep(10)
+                    self.print_erro(f"Erro de API do Google ao atualizar a planilha em lote: {api_err}")
+                    self.print_aviso("O processo continuará, mas a planilha pode não ter sido atualizada.")
+                except Exception as e:
+                    self.print_erro(f"Ocorreu um erro inesperado ao atualizar a planilha em lote: {e}")
+            # --- FIM DA MELHORIA ---
 
     def finalize_automation(self):
         """Finaliza o processo de automação e atualiza a interface."""
@@ -981,6 +1017,20 @@ Contato: gabriel.dantas@latam.com
             self.print_info("Salvando a Requisição de Compra...")
             self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
             self.aguardar_sap()
+
+            # --- MODIFICAÇÃO PARA TRATAR POP-UP DE DGR NO FINAL ---
+            try:
+                # A janela de pop-up que aparece após salvar geralmente é wnd[1]
+                self.print_info("Verificando pop-up de confirmação (DGR)...")
+                self.session.findById("wnd[1]").sendVKey(0) # Pressiona Enter
+                self.print_sucesso("Pop-up de confirmação tratado com 'Enter'.")
+                self.aguardar_sap() # Espera o SAP processar o Enter
+            except Exception:
+                # Se não houver pop-up, o código continua normalmente.
+                self.print_info("Nenhum pop-up de confirmação encontrado.")
+                pass
+            # --- FIM DA MODIFICAÇÃO ---
+            
             status_message = self.session.findById("wnd[0]/sbar").text
             match = re.search(r'(\d{10,})', status_message)
             if match:

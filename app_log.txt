@@ -1,0 +1,534 @@
+
+==================================================
+Sessão iniciada em 10/09/2025 16:42:57
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:42:57] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+
+==================================================
+Sessão iniciada em 10/09/2025 16:43:29
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:43:29] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 16:43:32] [INFO]    COM inicializado para threading
+[10/09/2025 16:43:32] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 16:43:32] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 16:43:32] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 16:43:33] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 16:43:33] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 16:43:33] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 16:43:33] [ERRO]    Arquivo de credenciais 'credentials.json' não encontrado.
+[10/09/2025 16:43:33] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 16:43:33] [INFO]    Automação concluída. Clique em 'Iniciar' para uma nova verificação.
+[10/09/2025 16:43:59] [INFO]    COM inicializado para threading
+[10/09/2025 16:43:59] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 16:43:59] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 16:43:59] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 16:43:59] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 16:43:59] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 16:43:59] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 16:44:03] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 16:44:04] [INFO]    Encontradas 5 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 16:44:04] ============================================================
+           Validando Lote de 2 itens (um por um)           
+ ============================================================
+[10/09/2025 16:44:07] ============================================================
+           Processando Linha 1 (PN: 10P4-2NF/K2G)          
+ ============================================================
+[10/09/2025 16:44:07] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:44:10] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:44:10] ============================================================
+             Processando Linha 2 (PN: 406Q75-1)            
+ ============================================================
+[10/09/2025 16:44:10] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:44:13] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 16:44:13] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:44:13] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:44:13] [INFO]    Atualizando linha 12: Status='OK'
+[10/09/2025 16:44:15] [INFO]    Atualizando linha 13: Status='OK'
+[10/09/2025 16:44:19] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 16:44:19] ============================================================
+         Criando Requisição para 2 itens validados         
+ ============================================================
+[10/09/2025 16:44:23] [AVISO]   Verificando se há pop-up de material perigoso (DGR)...
+[10/09/2025 16:44:23] [INFO]    Nenhum popup de DGR encontrado.
+[10/09/2025 16:44:23] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:44:25] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:44:26] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:44:26] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:44:29] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:44:33] ============================================================
+          Processando Linha 1 (PN: 3552AAADAACXCD)         
+ ============================================================
+[10/09/2025 16:44:33] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:44:36] [AVISO]   Resultado: [AVISO, tratado como OK] - Para este material existe um contrato convencionado a nível central
+[10/09/2025 16:44:36] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:44:36] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:44:36] [INFO]    Atualizando linha 22: Status='OK'
+[10/09/2025 16:44:38] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 2          
+ ============================================================
+[10/09/2025 16:44:38] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 16:44:42] [AVISO]   Verificando se há pop-up de material perigoso (DGR)...
+[10/09/2025 16:44:42] [INFO]    Nenhum popup de DGR encontrado.
+[10/09/2025 16:44:42] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:44:43] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:44:43] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:44:44] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:44:45] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:44:49] ============================================================
+             Processando Linha 1 (PN: 861304-E)            
+ ============================================================
+[10/09/2025 16:44:49] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:44:52] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:44:52] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:44:52] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:44:52] [INFO]    Atualizando linha 23: Status='OK'
+[10/09/2025 16:44:55] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 3          
+ ============================================================
+[10/09/2025 16:44:55] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 16:44:59] [AVISO]   Verificando se há pop-up de material perigoso (DGR)...
+[10/09/2025 16:44:59] [INFO]    Nenhum popup de DGR encontrado.
+[10/09/2025 16:44:59] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:45:00] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:45:00] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:45:00] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:45:02] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:45:05] ============================================================
+            Processando Linha 1 (PN: 891511-14)            
+ ============================================================
+[10/09/2025 16:45:06] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:45:09] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 16:45:09] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:45:09] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:45:09] [INFO]    Atualizando linha 53: Status='OK'
+[10/09/2025 16:45:11] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 4          
+ ============================================================
+[10/09/2025 16:45:11] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 16:45:15] [AVISO]   Verificando se há pop-up de material perigoso (DGR)...
+[10/09/2025 16:45:15] [INFO]    Nenhum popup de DGR encontrado.
+[10/09/2025 16:45:15] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:45:15] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:45:15] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 16:45:15] [AVISO]   Automação interrompida pelo usuário.
+
+==================================================
+Sessão iniciada em 10/09/2025 16:48:03
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:48:03] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+
+==================================================
+Sessão iniciada em 10/09/2025 16:48:06
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:48:06] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+
+==================================================
+Sessão iniciada em 10/09/2025 16:48:10
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:48:10] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 16:48:12] [INFO]    COM inicializado para threading
+[10/09/2025 16:48:12] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 16:48:12] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 16:48:12] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 16:48:12] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 16:48:12] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 16:48:12] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 16:48:20] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 16:48:22] [INFO]    Encontradas 4 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 16:48:22] ============================================================
+           Validando Lote de 2 itens (um por um)           
+ ============================================================
+[10/09/2025 16:48:26] ============================================================
+           Processando Linha 1 (PN: 10P4-2NF/K2G)          
+ ============================================================
+[10/09/2025 16:48:26] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:48:29] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:48:29] ============================================================
+             Processando Linha 2 (PN: 406Q75-1)            
+ ============================================================
+[10/09/2025 16:48:29] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:48:31] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 16:48:31] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:48:32] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:48:32] [INFO]    Atualizando linha 12: Status='OK'
+[10/09/2025 16:48:35] [INFO]    Atualizando linha 13: Status='OK'
+[10/09/2025 16:48:53] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 16:48:53] ============================================================
+         Criando Requisição para 2 itens validados         
+ ============================================================
+[10/09/2025 16:48:57] [AVISO]   Verificando se há pop-up de material perigoso (DGR)...
+[10/09/2025 16:48:57] [INFO]    Nenhum popup de DGR encontrado.
+[10/09/2025 16:48:57] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:48:59] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:49:00] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:49:00] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:49:04] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:49:07] ============================================================
+          Processando Linha 1 (PN: 3552AAADAACXCD)         
+ ============================================================
+[10/09/2025 16:49:08] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:49:10] [AVISO]   Resultado: [AVISO, tratado como OK] - Para este material existe um contrato convencionado a nível central
+[10/09/2025 16:49:10] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:49:11] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:49:11] [AVISO]   Lote 2 sem itens 'OK' ou automação interrompida. Pulando para o próximo.
+[10/09/2025 16:49:11] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 16:49:11] [AVISO]   Automação interrompida pelo usuário.
+
+==================================================
+Sessão iniciada em 10/09/2025 16:52:31
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:52:31] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 16:52:32] [INFO]    COM inicializado para threading
+[10/09/2025 16:52:32] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 16:52:32] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 16:52:32] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 16:52:32] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 16:52:32] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 16:52:32] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 16:52:36] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 16:52:37] [INFO]    Encontradas 4 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 16:52:37] ============================================================
+           Validando Lote de 2 itens (um por um)           
+ ============================================================
+[10/09/2025 16:52:40] ============================================================
+           Processando Linha 1 (PN: 10P4-2NF/K2G)          
+ ============================================================
+[10/09/2025 16:52:41] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:52:47] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:52:47] ============================================================
+             Processando Linha 2 (PN: 406Q75-1)            
+ ============================================================
+[10/09/2025 16:52:47] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:52:53] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 16:52:53] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:52:53] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:52:53] [INFO]    Atualizando linha 12: Status='OK'
+[10/09/2025 16:52:55] [INFO]    Atualizando linha 13: Status='OK'
+[10/09/2025 16:53:00] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 16:53:00] ============================================================
+         Criando Requisição para 2 itens validados         
+ ============================================================
+[10/09/2025 16:53:10] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:53:12] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:53:13] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:53:13] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:53:20] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:53:24] ============================================================
+          Processando Linha 1 (PN: 3552AAADAACXCD)         
+ ============================================================
+[10/09/2025 16:53:24] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:53:30] [AVISO]   Resultado: [AVISO, tratado como OK] - Para este material existe um contrato convencionado a nível central
+[10/09/2025 16:53:30] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:53:31] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:53:31] [INFO]    Atualizando linha 22: Status='OK'
+[10/09/2025 16:53:33] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 2          
+ ============================================================
+[10/09/2025 16:53:33] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 16:53:42] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:53:43] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:53:44] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:53:44] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:53:44] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 16:53:44] [AVISO]   Automação interrompida pelo usuário.
+
+==================================================
+Sessão iniciada em 10/09/2025 16:58:36
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 16:58:36] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 16:58:37] [INFO]    COM inicializado para threading
+[10/09/2025 16:58:37] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 16:58:37] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 16:58:37] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 16:58:37] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 16:58:37] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 16:58:37] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 16:58:42] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 16:58:43] [INFO]    Encontradas 3 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 16:58:43] ============================================================
+           Validando Lote de 2 itens (um por um)           
+ ============================================================
+[10/09/2025 16:58:47] ============================================================
+           Processando Linha 1 (PN: 10P4-2NF/K2G)          
+ ============================================================
+[10/09/2025 16:58:47] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:58:48] [AVISO]   Verificando popups de forma insistente por 10 segundos...
+[10/09/2025 16:58:58] [INFO]    Nenhum popup apareceu durante a verificação.
+[10/09/2025 16:58:58] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:58:58] ============================================================
+             Processando Linha 2 (PN: 406Q75-1)            
+ ============================================================
+[10/09/2025 16:58:58] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:58:59] [AVISO]   Verificando popups de forma insistente por 10 segundos...
+[10/09/2025 16:59:09] [INFO]    Nenhum popup apareceu durante a verificação.
+[10/09/2025 16:59:09] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 16:59:09] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:59:10] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:59:10] [INFO]    Atualizando linha 12: Status='OK'
+[10/09/2025 16:59:13] [INFO]    Atualizando linha 13: Status='OK'
+[10/09/2025 16:59:19] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 16:59:19] ============================================================
+         Criando Requisição para 2 itens validados         
+ ============================================================
+[10/09/2025 16:59:23] [AVISO]   Verificando popups de forma insistente por 10 segundos...
+[10/09/2025 16:59:34] [INFO]    Nenhum popup apareceu durante a verificação.
+[10/09/2025 16:59:34] [INFO]    Inserindo Depósitos...
+[10/09/2025 16:59:35] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 16:59:36] [ERRO]    Falha ao salvar a requisição. Mensagem SAP:
+[10/09/2025 16:59:36] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 16:59:42] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 16:59:46] ============================================================
+             Processando Linha 1 (PN: 861304-E)            
+ ============================================================
+[10/09/2025 16:59:46] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 16:59:47] [AVISO]   Verificando popups de forma insistente por 10 segundos...
+[10/09/2025 16:59:57] [INFO]    Nenhum popup apareceu durante a verificação.
+[10/09/2025 16:59:57] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 16:59:57] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 16:59:57] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 16:59:57] [INFO]    Atualizando linha 23: Status='OK'
+[10/09/2025 17:00:00] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 2          
+ ============================================================
+[10/09/2025 17:00:00] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 17:00:03] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 17:00:03] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 17:00:03] [AVISO]   Automação interrompida pelo usuário.
+
+==================================================
+Sessão iniciada em 10/09/2025 17:13:07
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 17:13:07] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 17:13:10] [INFO]    COM inicializado para threading
+[10/09/2025 17:13:10] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 17:13:10] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 17:13:10] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 17:13:11] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 17:13:11] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 17:13:11] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 17:13:15] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 17:13:44] [INFO]    Encontradas 2 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 17:13:44] ============================================================
+           Validando Lote de 2 itens (um por um)           
+ ============================================================
+[10/09/2025 17:13:48] ============================================================
+           Processando Linha 1 (PN: 10P4-2NF/K2G)          
+ ============================================================
+[10/09/2025 17:13:48] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 17:13:51] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 17:13:51] ============================================================
+             Processando Linha 2 (PN: 406Q75-1)            
+ ============================================================
+[10/09/2025 17:13:51] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 17:13:54] [AVISO]   Resultado: [AVISO, tratado como OK] - Data de entrega pode ser cumprida?
+[10/09/2025 17:13:54] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 17:13:54] ============================================================
+      Atualizando Planilha com Resultados da Validação     
+ ============================================================
+[10/09/2025 17:13:54] [INFO]    Atualizando linha 12: Status='OK'
+[10/09/2025 17:13:57] [INFO]    Atualizando linha 13: Status='OK'
+[10/09/2025 17:14:01] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 17:14:01] ============================================================
+         Criando Requisição para 2 itens validados         
+ ============================================================
+[10/09/2025 17:14:06] [INFO]    Inserindo Depósitos...
+[10/09/2025 17:14:08] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 17:14:09] [INFO]    Verificando pop-up de confirmação (DGR)...
+[10/09/2025 17:14:10] [SUCESSO] Pop-up de confirmação tratado com 'Enter'.
+[10/09/2025 17:14:10] [SUCESSO] Requisição criada com sucesso! Número: 1101050592
+[10/09/2025 17:14:10] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 17:14:15] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 17:14:15] [INFO]    Automação concluída. Clique em 'Iniciar' para uma nova verificação.
+
+==================================================
+Sessão iniciada em 10/09/2025 17:21:31
+Modo: Script Python
+Caminho base: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP
+==================================================
+[10/09/2025 17:21:31] [INFO]    Configurações carregadas de: c:\Users\3976339\Desktop\Projetos Python\CRIAR-REQ-MASSIVO-SAP\config.ini
+[10/09/2025 17:22:10] [INFO]    COM inicializado para threading
+[10/09/2025 17:22:10] ============================================================
+       Iniciando Robô de Requisição de Compra no SAP       
+ ============================================================
+[10/09/2025 17:22:10] [AVISO]   Sessão SAP inválida ou inexistente. Tentando conectar...
+[10/09/2025 17:22:10] [INFO]    Procurando por uma sessão SAP GUI...
+[10/09/2025 17:22:10] [SUCESSO] Sessão SAP ativa encontrada (Conexão 0, Sessão 0).
+[10/09/2025 17:22:10] [SUCESSO] Sessão SAP estabelecida com sucesso!
+[10/09/2025 17:22:10] ============================================================
+                   CONECTANDO À PLANILHA                   
+ ============================================================
+[10/09/2025 17:22:14] [SUCESSO] Conexão com a planilha estabelecida.
+[10/09/2025 17:22:15] [INFO]    Encontradas 2 linhas novas para o fluxo de Valida/Cria.
+[10/09/2025 17:22:15] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 17:22:19] ============================================================
+             Processando Linha 1 (PN: 861304-E)            
+ ============================================================
+[10/09/2025 17:22:19] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 17:22:22] [AVISO]   Resultado: [AVISO, tratado como OK] - Grupo de compradores inserido diferente de lista proposta
+[10/09/2025 17:22:22] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 17:22:22] ============================================================
+ Preparando Atualização da Planilha com Resultados da Validação
+ ============================================================
+[10/09/2025 17:22:22] [INFO]    Enviando 2 atualizações de validação para a planilha...
+[10/09/2025 17:22:22] [SUCESSO] Resultados da validação atualizados na planilha.
+[10/09/2025 17:22:22] ============================================================
+           FASE 2: CRIAÇÃO AUTOMÁTICA PARA LOTE 1          
+ ============================================================
+[10/09/2025 17:22:22] ============================================================
+         Criando Requisição para 1 itens validados         
+ ============================================================
+[10/09/2025 17:22:27] [INFO]    Inserindo Depósitos...
+[10/09/2025 17:22:28] [INFO]    Salvando a Requisição de Compra...
+[10/09/2025 17:22:28] [INFO]    Verificando pop-up de confirmação (DGR)...
+[10/09/2025 17:22:30] [SUCESSO] Pop-up de confirmação tratado com 'Enter'.
+[10/09/2025 17:22:30] [SUCESSO] Requisição criada com sucesso! Número: 1101050593
+[10/09/2025 17:22:30] ============================================================
+            Atualizando Planilha com a RC Criada           
+ ============================================================
+[10/09/2025 17:22:30] [INFO]    Enviando 2 atualizações de criação para a planilha de uma só vez...
+[10/09/2025 17:22:30] [SUCESSO] Planilha atualizada com sucesso!
+[10/09/2025 17:22:30] ============================================================
+           Validando Lote de 1 itens (um por um)           
+ ============================================================
+[10/09/2025 17:22:34] ============================================================
+             Processando Linha 1 (PN: 861304-S)            
+ ============================================================
+[10/09/2025 17:22:34] [INFO]    Pressionando Enter para validar o item atual...
+[10/09/2025 17:22:37] [ERRO]    Resultado: [ERRO] Material 861304-S não está atualizado no centro BR0V
+[10/09/2025 17:22:37] [INFO]    Validação do lote concluída. Encerrando a transação.
+[10/09/2025 17:22:37] ============================================================
+ Preparando Atualização da Planilha com Resultados da Validação
+ ============================================================
+[10/09/2025 17:22:37] [INFO]    Enviando 2 atualizações de validação para a planilha...
+[10/09/2025 17:22:38] [SUCESSO] Resultados da validação atualizados na planilha.
+[10/09/2025 17:22:38] [AVISO]   Lote 2 sem itens 'OK' ou automação interrompida. Pulando para o próximo.
+[10/09/2025 17:22:38] ============================================================
+                        FIM DO CICLO                       
+ ============================================================
+[10/09/2025 17:22:38] [INFO]    Automação concluída. Clique em 'Iniciar' para uma nova verificação.
