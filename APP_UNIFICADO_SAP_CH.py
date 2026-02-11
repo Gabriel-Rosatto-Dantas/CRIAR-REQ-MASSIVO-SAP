@@ -611,9 +611,9 @@ class SAPAutomationGUI:
         self.print_info(f"Data de Remessa definida para hoje: {data_hoje}")
 
         # 2. Agrupamento Inteligente (Substituindo 'Validador')
-        # Tenta usar 'Origem Sigla' e 'Destino Sigla', fallback para nomes antigos se não achar
-        col_origem = 'Origem Sigla' if 'Origem Sigla' in df_para_processar.columns else 'ORIGEM'
-        col_destino = 'Destino Sigla' if 'Destino Sigla' in df_para_processar.columns else 'DESTINO'
+        # PRIORIZAR ORIGEM/DESTINO (Correção solicitada)
+        col_origem = 'ORIGEM' if 'ORIGEM' in df_para_processar.columns else 'Origem Sigla'
+        col_destino = 'DESTINO' if 'DESTINO' in df_para_processar.columns else 'Destino Sigla'
         
         # Agrupa por Origem e Destino
         grupos = df_para_processar.groupby([col_origem, col_destino])
@@ -707,12 +707,13 @@ class SAPAutomationGUI:
                 # Usa grid_index gerado no processar_lotes
                 grid_index = int(item['grid_index'])
                 
-                # Mapeamento de colunas para coincidir com Cargo Heroes
-                mat_id = item.get('Material ID') or item.get('PN')
-                origem = item.get('Origem Sigla') or item.get('ORIGEM')
-                destino = item.get('Destino Sigla') or item.get('DESTINO')
-                qtd = str(item.get('Quantidade', '1')).replace(',', '.')
-                texto = item.get('Logística') or item.get('TEXTO')
+                # Mapeamento de colunas (Prioridade para ORIGEM/DESTINO do SAP)
+                mat_id = item.get('PN') or item.get('Material ID')
+                origem = item.get('ORIGEM') or item.get('Origem Sigla')
+                destino = item.get('DESTINO') or item.get('Destino Sigla')
+                qtd = str(item.get('QTD') or item.get('Quantidade', '1')).replace(',', '.')
+                # Texto/Logística
+                texto = item.get('TEXTO') or item.get('Logística')
                 
                 status_item = "OK"
                 self.print_header(f"Processando Item {grid_index + 1} (Mat: {mat_id})")
@@ -767,12 +768,12 @@ class SAPAutomationGUI:
             for i, item in lote.iterrows():
                 if not self.running: return None, "Cancelado."
                 
-                # Mapeamento
-                mat_id = item.get('Material ID') or item.get('PN')
-                origem = item.get('Origem Sigla') or item.get('ORIGEM')
-                destino = item.get('Destino Sigla') or item.get('DESTINO')
-                qtd = str(item.get('Quantidade', '1')).replace(',', '.')
-                texto = item.get('Logística') or item.get('TEXTO')
+                # Mapeamento (Prioridade para ORIGEM/DESTINO do SAP)
+                mat_id = item.get('PN') or item.get('Material ID')
+                origem = item.get('ORIGEM') or item.get('Origem Sigla')
+                destino = item.get('DESTINO') or item.get('Destino Sigla')
+                qtd = str(item.get('QTD') or item.get('Quantidade', '1')).replace(',', '.')
+                texto = item.get('TEXTO') or item.get('Logística')
 
                 grid.modifyCell(i, "MATNR", str(mat_id))
                 grid.modifyCell(i, "MENGE", qtd)
@@ -791,7 +792,7 @@ class SAPAutomationGUI:
                 if not self.running: return None, "Cancelado."
                 
                 # Lógica de Mapeamento de Depósito
-                origem_key = str(item.get('Origem Sigla') or item.get('ORIGEM')).strip().upper()
+                origem_key = str(item.get('ORIGEM') or item.get('Origem Sigla')).strip().upper()
                 deposito = self.DEPOSITO_MAPPING.get(origem_key, 'AE01') # Default 'AE01' conforme solicitação
                 
                 grid.setCurrentCell(i, "MATNR")
