@@ -69,10 +69,24 @@ class LogRedirector:
         pass
 
 class SAPAutomationGUI:
+    # Mapeamento de Depósitos por Origem (Hardcoded conforme solicitação)
+    DEPOSITO_MAPPING = {
+        'BR0G': 'AE01', 'BR0Q': 'AE01', 'BR0D': 'AE01', 'BR0H': 'AE01', 'BR0O': 'AE01',
+        'BR0P': 'AE01', 'BR0E': 'AE01', 'BR0R': 'AE01', 'BR0S': 'AE01', 'BR0Y': 'AE01',
+        'BR0Z': 'AE01', 'BR1A': 'AE01', 'BR1C': 'AE01', 'BR1D': 'AE01', 'BR1G': 'AE01',
+        'BR1I': 'AE01', 'BR1J': 'AE01', 'BR1K': 'AE01', 'BR1L': 'AE01', 'BR1T': 'AE01',
+        'BR2A': 'AE01', 'BR2B': 'AE01', 'BR2C': 'AE01', 'BR2D': 'AE01', 'BR2E': 'AE01',
+        'BR2Q': 'AE01', 'BR2U': 'AE01', 'BR2V': 'AE01', 'BR3A': 'AE01', 'BR3E': 'AE01',
+        'BR3F': 'AE01', 'BR3K': 'AE01', 'BR3N': 'AE01', 'BRDN': 'AE01', 'BR8A': 'AE13',
+        'BR2I': 'AE01', 'BR0I': 'AE13', 'BR0U': 'AE01', 'BR0K': 'AE13', 'BR0X': 'AE13',
+        'BR0J': 'AE01', 'BR1E': 'AE01', 'BR1F': 'AE01', 'BR0V': 'AE01', 'BR8E': 'AE13',
+        'BR1B': 'AE01', 'BR0F': 'AE01', 'BR8I': 'AE01', 'BRIJ': 'AE01', 'BR8G': 'AE01'
+    }
+
     def __init__(self, root):
         self.root = root
         self.root.title("Automação Integrada - SAP & Cargo Heroes")
-        self.root.geometry("1000x650")
+        self.root.geometry("1000x700")
         self.root.minsize(900, 600)
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.root.configure(bg='#2E2E2E')
@@ -106,7 +120,7 @@ class SAPAutomationGUI:
 
         # Ícones Base64
         self.icons = {
-            "start": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMTE82AAAByklEQVQ4EaVTTUhUURQ+V3d1JzUzDBf9B0sLw0lDItocoQd9QUG3LhpEL7pw7aJdKyIi6FYQ2oZ1UXQRhFAb60PQg1ZCi2kStZpoGjcz9768eW/G6Mwbw72X+37n3HPvPQCB8Q+QnL8xQCeAF/D/o/kOWG01P4BHgCfz30KMR8s+AaYAPND9GkAy8BpwGSgLHsA74JESi2kUeC2APdC6BN8B+u0mYwTo/2QjE58D2pXfAYwA215W25gBFoD1/R9IZzGgYv03gC2gC1gDvgIHADgACsAecD6hL8eA/4A/AT8BfwL6n2WnAY+A+cBj4DHvEY+BTYBT4B/gY+An4G9gOvgZfAReA/4FvgK/AqcB14DwwB+H/t9w9OAD+An/d8D/4L/EXkX2gN8A1XkLwNngGfA58Ar4DNwFvgE/A28Bv4Cfi/sXv0C/A78DPgIeBR4DvgE+A54AvAE+A9YAhYABYAzYC/gH2APWApWAcvAdqAfeAesAyuBvA74Anjkl+sN4EPgG+A3wBvgS5Y4ADwGjgIfAm8BD4GngCPANeA0cAW4BnwG3AcuArdBB/gMvAasA/8CPga+Ad8AvwB+A/YD/gD+AfwB+D/AP8C/gb8F/gX+A/4H/A78CvwNfA1sApsBGgHNgNngCXgGfAYeBIMAP+A18B6sAmsA58AW8AC8A2YAxaBLWAb2A3uAx8AZ4BnwEvAm8BTYB/4BOwBDoCTQBDwBrgD3AE+Ax4AZoCNb+V2d+AocB14B/gJ+BG4C1wBfgE+A74DPgX+D/gb+B/wL/A/4DvgF+BGYAhZ/f+AasAm8BWwA8+B14BTwGnAEOAX8B7wG3gV8H4L/f7bB/yXgG/A18CXwDvgQ2AH+AF8CJ4DngHPAK8Ar4PXgGfA78DPwN/Ad8A3wL+Bn5B/gP8F/rX7F/gV+B/wI/AJ8K/AnwA/8AMxS88wI6H8lAAAAAElFTSuQmCC"),
+            "start": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAABWWlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgIDwvcmRmOkRlc2NyaXB0aW9uPgogICA8L3JkZjpSREY+CjwveDp4bXBtZXRhPgpMTE82AAAByklEQVQ4EaVTTUhUURQ+V3d1JzUzDBf9B0sLw0lDItocoQd9QUG3LhpEL7pw7aJdKyIi6FYQ2oZ1UXQRhFAb60PQg1ZCi2kStZpoGjcz9768eW/G6Mwbw72X+37n3HPvPQCB8Q+QnL8xQCeAF/D/o/kOWG01P4BHgCfz30KMR8s+AaYAPND9GkAy8BpwGSgLHsA74JESi2kUeC2APdC6BN8B+u0mYwTo/2QjE58D2pXfAYwA215W25gBFoD1/R9IZzGgYv03gC2gC1gDvgIHADgACsAecD6hL8eA/4A/AT8BfwL6n2WnAY+A+cBj4DHvEY+BTYBT4B/gY+An4G9gOvgZfAReA/4FvgK/AqcB14DwwB+H/t9w9OAD+An/d8D/4L/EXkX2gN8A1XkLwNngGfA58Ar4DNwFvgE/A28Bv4Cfi/sXv0C/A78DPgIeBR4DvgE+A54AvAE+A9YAhYABYAzYC/gH2APWApWAcvAdqAfeAesAyuBvA74Anjkl+sN4EPgG+A3wBvgS5Y4ADwGjgIfAm8BD4GngCPANeA0cAW4BnwG3AcuArdBB/gMvAasA/8CPga+Ad8AvwB+A/YD/gD+AfwB+D/AP8C/gb8F/gX+A/wH/A78CvwNfA1sApsBGgHNgNngCXgGfAYeBIMAP+A18B6sAmsA58AW8AC8A2YAxaBLWAb2A3uAx8AZ4BnwEvAm8BTYB/4BOwBDoCTQBDwBrgD3AE+Ax4AZoCNb+V2d+AocB14B/gJ+BG4C1wBfgE+A74DPgX+D/gb+B/wL/A/4DvgF+BGYAhZ/f+AasAm8BWwA8+B14BTwGnAEOAX8B7wG3gV8H4L/f7bB/yXgG/A18CXwDvgQ2AH+AF8CJ4DngHPAK8Ar4PXgGfA78DPwN/Ad8A3wL+Bn5B/gP8F/rX7F/gV+B/wI/AJ8K/AnwA/8AMxS88wI6H8lAAAAAElFTSuQmCC"),
             "stop": self.create_icon_from_base64("iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA7SURBVDhPY/wPBAxUACZA1gBTgA2K/1EGBgaG/2A8HIBoMRhIMeAgYADEDwFGBgYGDjA50uAzAAgwAK0/AwMT5urRAAAAAElFTSuQmCC"),
         }
         
@@ -127,6 +141,8 @@ class SAPAutomationGUI:
         if self.log_to_file:
             with open(self.log_file_path, 'a', encoding='utf-8') as log_file:
                 log_file.write(f"\n{'='*50}\nSessão iniciada em {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
+                log_file.write(f"Modo: {'Executável' if self.is_executable() else 'Script Python'}\n")
+                log_file.write(f"Caminho base: {self.base_path}\n{'='*50}\n")
         
         try:
             self.config.read(self.config_path, encoding='utf-8')
@@ -157,6 +173,9 @@ class SAPAutomationGUI:
             return os.path.dirname(sys.executable)
         return os.path.dirname(os.path.abspath(__file__))
     
+    def is_executable(self):
+        return getattr(sys, 'frozen', False)
+
     def load_icon(self):
         try:
             icon_path = os.path.join(self.base_path, 'icone.ico')
@@ -180,6 +199,13 @@ class SAPAutomationGUI:
         
         self.status_frame = ttk.Frame(self.root, style='TFrame')
         self.status_frame.pack(side=tk.BOTTOM, fill=tk.X)
+        
+        # Status SAP
+        self.sap_status_var = tk.StringVar(value="SAP: Desconectado")
+        self.sap_status_label = ttk.Label(self.status_frame, textvariable=self.sap_status_var, foreground="red", padding=(5, 2))
+        self.sap_status_label.pack(side=tk.LEFT)
+        ttk.Separator(self.status_frame, orient=tk.VERTICAL).pack(side=tk.LEFT, fill=tk.Y, padx=5)
+
         self.status_var = tk.StringVar(value="Pronto")
         self.status_label = ttk.Label(self.status_frame, textvariable=self.status_var, padding=(5, 2))
         self.status_label.pack(side=tk.LEFT, fill=tk.X, expand=True)
@@ -213,6 +239,10 @@ class SAPAutomationGUI:
         
         self.log_area = scrolledtext.ScrolledText(log_frame, wrap=tk.WORD, state=tk.DISABLED, font=("Consolas", 10), bg="#252526", fg="#D4D4D4", relief=tk.FLAT, borderwidth=0, insertbackground="white")
         self.log_area.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+
+        self.progress_var = tk.DoubleVar()
+        self.progress_bar = ttk.Progressbar(self.main_tab, variable=self.progress_var, maximum=100)
+        self.progress_bar.pack(fill=tk.X, padx=10, pady=(5, 0))
     
     def setup_config_tab(self):
         config_main_frame = ttk.Frame(self.config_tab, padding="10", style='TFrame')
@@ -295,6 +325,7 @@ class SAPAutomationGUI:
         if self.running:
             if not messagebox.askyesno("Confirmação", "A automação está em execução. Deseja sair?"): return
             self.stop_automation()
+        self.restore_stdout()
         self.root.destroy()
 
     def toggle_buttons(self, state):
@@ -303,6 +334,25 @@ class SAPAutomationGUI:
         self.start_button.config(state=s)
         self.ch_button.config(state=s)
         self.stop_button.config(state=ns)
+    
+    def atualizar_status_sap(self, conectado=False, mensagem=None):
+        if conectado:
+            self.sap_status_var.set("SAP: Conectado")
+            self.sap_status_label.configure(foreground="#66bb6a")
+        else:
+            self.sap_status_var.set("SAP: Desconectado")
+            self.sap_status_label.configure(foreground="#ef5350")
+        if mensagem:
+            self.status_var.set(mensagem)
+
+    def validate_config(self):
+        return all([
+            self.sap_path_var.get(), self.sap_system_var.get(),
+            self.google_creds_var.get(), self.google_sheet_var.get(), self.google_tab_var.get()
+        ])
+    
+    def update_progress(self, value):
+        self.root.after(0, lambda: self.progress_var.set(value))
 
     # --- Lógica de Log ---
     def setup_log_redirector(self):
@@ -346,19 +396,28 @@ class SAPAutomationGUI:
             except Exception: pass
 
     # =========================================================================
-    #  AUTOMAÇÃO SAP (Simplificada para manter foco no CH)
+    #  AUTOMAÇÃO SAP
     # =========================================================================
     def start_automation(self):
         if self.running: return
+        
+        if not self.validate_config():
+            messagebox.showerror("Erro", "Preencha todas as configurações SAP/Google.")
+            return
+
         self.running = True
         self.toggle_buttons(False)
         self.status_var.set("Executando Automação SAP...")
+        
         self.log_area.config(state=tk.NORMAL)
         self.log_area.delete(1.0, tk.END)
         self.log_area.config(state=tk.DISABLED)
+        
         self.setup_log_redirector()
-        thread = threading.Thread(target=self.run_sap_automation, daemon=True)
-        thread.start()
+        
+        # Iniciar thread do SAP
+        self.automation_thread = threading.Thread(target=self.run_sap_automation, daemon=True)
+        self.automation_thread.start()
 
     def stop_automation(self):
         if not self.running: return
@@ -367,13 +426,404 @@ class SAPAutomationGUI:
         self.print_aviso("Solicitação de parada recebida. Aguarde o fim do ciclo atual...")
 
     def run_sap_automation(self):
-        # Lógica SAP omitida para manter foco no CH
-        self.print_header("Iniciando Robô SAP")
-        time.sleep(1)
-        self.print_aviso("Função SAP simulada. Foco no Cargo Heroes.")
-        self.running = False
+        try:
+            pythoncom.CoInitialize()
+            self.print_info("COM inicializado para threading")
+        except Exception as e:
+            self.print_erro(f"Erro ao inicializar COM: {str(e)}")
+            
+        try:
+            self.print_header("Iniciando Robô de Requisição de Compra no SAP")
+            
+            # Conexão SAP
+            if not self.is_session_valid():
+                self.print_aviso("Sessão SAP inválida ou inexistente. Tentando conectar...")
+                self.root.after(0, lambda: self.atualizar_status_sap(False, "Conectando ao SAP..."))
+                self.session = self.sap_login_handler()
+
+            if not self.session:
+                self.print_erro("Falha na conexão com o SAP. Verifique as configurações e se o SAP está acessível.")
+                self.root.after(0, lambda: self.atualizar_status_sap(False, "Falha na conexão"))
+                return
+            
+            self.print_sucesso("Sessão SAP estabelecida com sucesso!")
+            self.root.after(0, lambda: self.atualizar_status_sap(True, "Conectado ao SAP"))
+            
+            # Processamento Planilha
+            try:
+                self.print_header("CONECTANDO À PLANILHA")
+                credentials_file = self.google_creds_var.get()
+                gc = gspread.service_account(filename=credentials_file)
+                spreadsheet = gc.open(self.google_sheet_var.get())
+                worksheet = spreadsheet.worksheet(self.google_tab_var.get())
+                self.print_sucesso("Conexão com a planilha estabelecida.")
+                
+                headers = worksheet.row_values(1)
+                status_col_index = headers.index("Status") + 1
+                req_col_index = headers.index("REQUISIÇÃO") + 1
+                
+                df = pd.DataFrame(worksheet.get_all_records())
+                df['linha_planilha'] = df.index + 2
+                # Considera apenas linhas sem status
+                df_para_processar = df[df['Status'] == ''].copy()
+
+                if df_para_processar.empty:
+                    self.print_aviso("Nenhuma linha nova para validar e criar.")
+                else:
+                    self.processar_lotes(df_para_processar, worksheet, status_col_index, req_col_index)
+
+            except Exception as e:
+                self.print_erro(f"Erro crítico no ciclo principal: {e}")
+                self.session = None 
+                self.root.after(0, lambda: self.atualizar_status_sap(False, f"Erro SAP"))
+            
+        except Exception as e:
+            self.print_erro(f"Erro fatal na automação: {str(e)}")
+        finally:
+            self.print_header("FIM DO CICLO")
+            self.root.after(0, self.finalize_automation)
+            pythoncom.CoUninitialize()
+
+    # --- Helpers SAP ---
+    
+    def finalize_automation(self):
+        if self.running:
+            self.print_info("Automação concluída.")
+            self.running = False
+        else:
+            self.print_aviso("Automação interrompida pelo usuário.")
+
         self.toggle_buttons(True)
+        self.status_var.set("Pronto para iniciar")
+        self.update_progress(0)
         self.restore_stdout()
+        
+    def aguardar_sap(self, timeout=30):
+        if not self.session: return False
+        start_time = time.time()
+        while self.running:
+            try:
+                if not self.session.busy: return True
+            except: return False
+            if time.time() - start_time > timeout:
+                self.print_aviso(f"Timeout ao aguardar SAP após {timeout} segundos")
+                return False
+            time.sleep(0.2)
+        return False
+
+    def is_session_valid(self):
+        if self.session is None: return False
+        try:
+            self.session.findById("wnd[0]")
+            return True
+        except (pywintypes.com_error, Exception):
+            return False
+
+    def sap_login_handler(self):
+        try:
+            self.print_info("Procurando por uma sessão SAP GUI...")
+            sap_gui_auto = win32com.client.GetObject("SAPGUI")
+            application = sap_gui_auto.GetScriptingEngine
+            
+            if application.Connections.Count > 0:
+                for conn_idx in range(application.Connections.Count):
+                    connection = application.Connections(conn_idx)
+                    if connection.Sessions.Count > 0:
+                        for session_idx in range(connection.Sessions.Count):
+                            session = connection.Sessions(session_idx)
+                            try:
+                                session.findById("wnd[0]")
+                                self.print_sucesso(f"Sessão SAP ativa encontrada.")
+                                return session
+                            except: continue
+            
+            self.print_aviso("Nenhuma sessão SAP válida encontrada. Iniciando nova conexão...")
+            return self.open_and_login_sap()
+        except (pywintypes.com_error, Exception):
+            self.print_aviso("Iniciando processo de login...")
+            return self.open_and_login_sap()
+
+    def open_and_login_sap(self):
+        try:
+            sap_path = self.config['SAP']['caminho_logon']
+            sap_system = self.config['SAP']['sistema'].strip()
+            
+            if not os.path.exists(sap_path):
+                self.print_erro(f"Caminho do SAP Logon não encontrado: '{sap_path}'")
+                return None
+                
+            self.print_info(f"Abrindo SAP Logon...")
+            subprocess.Popen(sap_path)
+            time.sleep(5)
+            
+            sap_gui_auto = win32com.client.GetObject("SAPGUI")
+            application = sap_gui_auto.GetScriptingEngine
+            
+            self.print_info(f"Conectando ao sistema '{sap_system}'...")
+            connection = application.OpenConnection(sap_system, True)
+            time.sleep(3)
+            session = connection.Children(0)
+            
+            start_time = time.time()
+            while session.busy:
+                time.sleep(0.5)
+                if time.time() - start_time > 30: return None
+            
+            main_window = session.findById("wnd[0]")
+            
+            try:
+                main_window.findById("usr/txtRSYST-BNAME")
+                self.print_info("Preenchendo credenciais...")
+                user = self.config.get('SAP', 'usuario')
+                password = self.config.get('SAP', 'senha')
+                
+                main_window.findById("usr/txtRSYST-BNAME").text = user
+                main_window.findById("usr/pwdRSYST-BCODE").text = password
+                main_window.sendVKey(0)
+
+                start_time = time.time()
+                while session.busy:
+                    time.sleep(0.5)
+                    if time.time() - start_time > 30: return None
+                
+                try: session.findById("wnd[1]").sendVKey(0) 
+                except: pass
+                
+                if "easy access" in session.findById("wnd[0]").text.lower() or "menú" in session.findById("wnd[0]").text.lower():
+                    self.print_sucesso("Login no SAP realizado com sucesso!")
+                    return session
+                else:
+                    self.print_erro(f"Falha no login: {session.findById('sbar').text}")
+                    return None
+            except:
+                self.print_sucesso("Sessão existente detectada.")
+                return session
+
+        except Exception as e:
+            self.print_erro(f"Erro crítico login: {str(e)}")
+            return None
+
+    def processar_lotes(self, df_para_processar, worksheet, status_col_index, req_col_index):
+        self.print_info(f"Encontradas {len(df_para_processar)} linhas pendentes.")
+        
+        # 1. Definir data do dia (Variável solicitada)
+        data_hoje = datetime.now().strftime('%d.%m.%Y')
+        self.print_info(f"Data de Remessa definida para hoje: {data_hoje}")
+
+        # 2. Agrupamento Inteligente (Substituindo 'Validador')
+        # Tenta usar 'Origem Sigla' e 'Destino Sigla', fallback para nomes antigos se não achar
+        col_origem = 'Origem Sigla' if 'Origem Sigla' in df_para_processar.columns else 'ORIGEM'
+        col_destino = 'Destino Sigla' if 'Destino Sigla' in df_para_processar.columns else 'DESTINO'
+        
+        # Agrupa por Origem e Destino
+        grupos = df_para_processar.groupby([col_origem, col_destino])
+        
+        lotes_para_processar = []
+        
+        for (origem, destino), grupo in grupos:
+            # Divide cada grupo em pedaços de 10 linhas
+            for i in range(0, len(grupo), 10):
+                chunk = grupo.iloc[i : i + 10].copy()
+                # Adiciona índice do grid (0 a 9) necessário para o SAP preencher a tabela
+                chunk['grid_index'] = range(len(chunk))
+                lotes_para_processar.append(chunk)
+        
+        total_lotes = len(lotes_para_processar)
+        self.print_info(f"Total de RCs a serem criadas (Lotes): {total_lotes}")
+        
+        for idx, lote_df in enumerate(lotes_para_processar):
+            if not self.running: break
+            if not self.is_session_valid():
+                self.print_erro("Sessão SAP perdida. Tentando reconectar...")
+                self.session = self.sap_login_handler()
+                if not self.session: break
+            
+            self.update_progress(((idx + 1) / total_lotes) * 100)
+            origem_val = lote_df.iloc[0][col_origem]
+            destino_val = lote_df.iloc[0][col_destino]
+            self.print_header(f"Processando Lote {idx + 1}/{total_lotes} | {origem_val} -> {destino_val}")
+            
+            # --- Validação (com data automática) ---
+            resultados = self.validar_lote_na_rc(lote_df, data_hoje)
+            
+            # Atualização da Planilha (Validação)
+            validation_updates = []
+            linhas_ok = []
+            for res in resultados:
+                validation_updates.append({'range': f'{gspread.utils.rowcol_to_a1(res["linha_planilha"], status_col_index)}', 'values': [[str(res['status'])]]})
+                validation_updates.append({'range': f'{gspread.utils.rowcol_to_a1(res["linha_planilha"], req_col_index)}', 'values': [[str(res['numero_rc'])]]})
+                if res['status'] == 'OK': linhas_ok.append(res['linha_planilha'])
+
+            if validation_updates:
+                try: worksheet.batch_update(validation_updates)
+                except Exception as e: self.print_erro(f"Erro update planilha: {e}")
+
+            # --- Criação (apenas itens OK) ---
+            if not linhas_ok:
+                self.print_aviso("Nenhum item válido neste lote. Pulando criação.")
+                continue
+                
+            lote_df_ok = lote_df[lote_df['linha_planilha'].isin(linhas_ok)].copy()
+            # Reindexa grid_index sequencialmente para o lote de criação
+            lote_df_ok['grid_index'] = range(len(lote_df_ok))
+            
+            if not self.is_session_valid():
+                self.print_erro("Sessão SAP perdida.")
+                break
+            
+            numero_rc, msg_status = self.criar_rc_para_lote_ok(lote_df_ok, data_hoje)
+            
+            # Atualização Final
+            creation_updates = []
+            for linha in lote_df_ok['linha_planilha']:
+                creation_updates.append({'range': f'{gspread.utils.rowcol_to_a1(linha, status_col_index)}', 'values': [[str(msg_status)]]})
+                if numero_rc:
+                    creation_updates.append({'range': f'{gspread.utils.rowcol_to_a1(linha, req_col_index)}', 'values': [[str(numero_rc)]]})
+            
+            if creation_updates:
+                try:
+                    worksheet.batch_update(creation_updates)
+                    self.print_sucesso("RC Criada e Planilha atualizada.")
+                except Exception as e: self.print_erro(f"Erro update final: {e}")
+
+    def validar_lote_na_rc(self, lote_de_itens, data_hoje):
+        if lote_de_itens.empty: return []
+        resultados_finais = []
+        try:
+            self.print_header(f"Validando Lote ({len(lote_de_itens)} itens)")
+            self.session.findById("wnd[0]").maximize()
+            self.session.findById("wnd[0]/tbar[0]/okcd").text = "/NME51N"
+            self.session.findById("wnd[0]").sendVKey(0)
+            self.aguardar_sap()
+            time.sleep(1)
+            self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:3327/cmbMEREQ_TOPLINE-BSART").key = "ZRT"
+            self.session.findById("wnd[0]").sendVKey(0)
+            self.aguardar_sap()
+            grid = self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:3212/cntlGRIDCONTROL/shellcont/shell")
+            
+            for _, item in lote_de_itens.iterrows():
+                if not self.running: break
+                
+                # Usa grid_index gerado no processar_lotes
+                grid_index = int(item['grid_index'])
+                
+                # Mapeamento de colunas para coincidir com Cargo Heroes
+                mat_id = item.get('Material ID') or item.get('PN')
+                origem = item.get('Origem Sigla') or item.get('ORIGEM')
+                destino = item.get('Destino Sigla') or item.get('DESTINO')
+                qtd = str(item.get('Quantidade', '1')).replace(',', '.')
+                texto = item.get('Logística') or item.get('TEXTO')
+                
+                status_item = "OK"
+                self.print_header(f"Processando Item {grid_index + 1} (Mat: {mat_id})")
+                try:
+                    grid.modifyCell(grid_index, "MATNR", str(mat_id))
+                    grid.modifyCell(grid_index, "MENGE", qtd)
+                    grid.modifyCell(grid_index, "RESWK", str(origem))
+                    grid.modifyCell(grid_index, "EEIND", data_hoje) # Usa data automática
+                    grid.modifyCell(grid_index, "EPSTP", "U")
+                    grid.modifyCell(grid_index, "NAME1", str(destino))
+                    grid.modifyCell(grid_index, "EKGRP", "P04")
+                    grid.modifyCell(grid_index, "TXZ01", str(texto))
+                    self.session.findById("wnd[0]").sendVKey(0)
+                    self.aguardar_sap()
+                    time.sleep(1.5)
+                    try: self.session.findById("wnd[1]").sendVKey(0)
+                    except: pass
+                    
+                    status_bar = self.session.findById("wnd[0]/sbar")
+                    if status_bar.messageType in ('E', 'A') or "não está atualizado no centro" in status_bar.text:
+                        status_item = status_bar.text
+                        self.print_erro(f"Erro: {status_item}")
+                    else:
+                        status_item = "OK"
+                        self.print_sucesso("Item OK")
+                except Exception as e:
+                    status_item = f"Erro crítico: {str(e)}"
+                    self.print_erro(status_item)
+                resultados_finais.append({'linha_planilha': item['linha_planilha'], 'status': status_item, 'numero_rc': '' if status_item == 'OK' else 'ERRO'})
+            return resultados_finais
+        finally:
+            try:
+                if self.is_session_valid():
+                    self.session.findById("wnd[0]/tbar[0]/okcd").text = "/N"
+                    self.session.findById("wnd[0]").sendVKey(0)
+            except: pass
+
+    def criar_rc_para_lote_ok(self, lote_de_itens_ok, data_hoje):
+        if lote_de_itens_ok.empty: return None, "Lote vazio."
+        try:
+            self.print_header(f"Criando RC para {len(lote_de_itens_ok)} itens")
+            self.session.findById("wnd[0]").maximize()
+            self.session.findById("wnd[0]/tbar[0]/okcd").text = "/NME51N"
+            self.session.findById("wnd[0]").sendVKey(0)
+            self.aguardar_sap()
+            self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:3327/cmbMEREQ_TOPLINE-BSART").key = "ZRT"
+            self.session.findById("wnd[0]").sendVKey(0)
+            self.aguardar_sap()
+            grid = self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:3212/cntlGRIDCONTROL/shellcont/shell")
+            
+            lote = lote_de_itens_ok.reset_index(drop=True)
+            for i, item in lote.iterrows():
+                if not self.running: return None, "Cancelado."
+                
+                # Mapeamento
+                mat_id = item.get('Material ID') or item.get('PN')
+                origem = item.get('Origem Sigla') or item.get('ORIGEM')
+                destino = item.get('Destino Sigla') or item.get('DESTINO')
+                qtd = str(item.get('Quantidade', '1')).replace(',', '.')
+                texto = item.get('Logística') or item.get('TEXTO')
+
+                grid.modifyCell(i, "MATNR", str(mat_id))
+                grid.modifyCell(i, "MENGE", qtd)
+                grid.modifyCell(i, "RESWK", str(origem))
+                grid.modifyCell(i, "EEIND", data_hoje) # Data automática
+                grid.modifyCell(i, "EPSTP", "U")
+                grid.modifyCell(i, "NAME1", str(destino))
+                grid.modifyCell(i, "EKGRP", "P04")
+                grid.modifyCell(i, "TXZ01", str(texto))
+            
+            self.session.findById("wnd[0]").sendVKey(0)
+            self.aguardar_sap()
+            
+            self.print_info("Inserindo Depósitos...")
+            for i, item in lote.iterrows():
+                if not self.running: return None, "Cancelado."
+                
+                # Lógica de Mapeamento de Depósito
+                origem_key = str(item.get('Origem Sigla') or item.get('ORIGEM')).strip().upper()
+                deposito = self.DEPOSITO_MAPPING.get(origem_key, 'AE01') # Default 'AE01' conforme solicitação
+                
+                grid.setCurrentCell(i, "MATNR")
+                self.aguardar_sap()
+                self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0015/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:3303/tabsREQ_ITEM_DETAIL/tabpTABREQDT16").select()
+                self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0015/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:3303/tabsREQ_ITEM_DETAIL/tabpTABREQDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1318/ssubCUSTOMER_DATA_ITEM:SAPLXM02:0111/tabsTABREITER1/tabpTRANS").select()
+                depot = self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0015/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:3303/tabsREQ_ITEM_DETAIL/tabpTABREQDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1318/ssubCUSTOMER_DATA_ITEM:SAPLXM02:0111/tabsTABREITER1/tabpTRANS/ssubSUBBILD1:SAPLXM02:0114/ctxtEBAN-ZZDEP_FORNEC")
+                depot.text = str(deposito)
+                if i < len(lote) - 1:
+                    self.session.findById("wnd[0]/usr/subSUB0:SAPLMEGUI:0015/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB1:SAPLMEGUI:6000/btn%#AUTOTEXT002").press()
+                    self.aguardar_sap()
+
+            self.print_info("Salvando RC...")
+            self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
+            self.aguardar_sap()
+
+            try:
+                self.session.findById("wnd[1]").sendVKey(0) 
+                self.aguardar_sap()
+            except: pass
+            
+            msg = self.session.findById("wnd[0]/sbar").text
+            match = re.search(r'(\d{10,})', msg)
+            if match:
+                rc = match.group(0)
+                self.print_sucesso(f"RC Criada: {rc}")
+                return rc, msg
+            else:
+                self.print_erro(f"Falha: {msg}")
+                return None, msg
+        except Exception as e:
+            return None, f"Erro criação: {e}"
 
     # =========================================================================
     #  AUTOMAÇÃO CARGO HEROES
@@ -505,9 +955,7 @@ class SAPAutomationGUI:
             if driver:
                 try: driver.quit()
                 except: pass
-            self.running = False
-            self.root.after(0, lambda: self.toggle_buttons(True))
-            self.restore_stdout()
+            self.finalize_automation()
 
     def ch_tirar_print(self, driver, nome):
         try:
